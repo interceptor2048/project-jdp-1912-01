@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/group")
+@RequestMapping("/v1/group")
 public class GroupController {
 
     @GetMapping(value = "getGroups")
-
     public List<GroupDto> getGroups() {
         return new ArrayList<>();
     }
+
     @GetMapping(value = "getGroup")
-    public GroupDto getGroup(@RequestParam long groupId){
+    public GroupDto getGroup(@RequestParam Long groupId){
         return new GroupDto(groupId,"Some Group Name");
     }
 
     @DeleteMapping(value = "deleteGroup")
-    public void deleteGroup(@RequestParam long groupId) {
+    public void deleteGroup(@RequestParam Long groupId) {
     }
 
     @PutMapping(value = "updateGroup")
