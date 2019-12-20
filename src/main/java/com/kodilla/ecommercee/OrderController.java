@@ -21,6 +21,7 @@ public class OrderController {
         return new OrderDto(1L, "orderName");
     }
 
+    @DeleteMapping(value = "deleteOrder")
     public void deleteOrder(@RequestParam Long orderId) {
 
     }
