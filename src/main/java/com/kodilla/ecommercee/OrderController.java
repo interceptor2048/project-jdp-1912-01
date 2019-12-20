@@ -1,4 +1,38 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.domain.OrderDto;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/v1/orders")
 public class OrderController {
+
+    @GetMapping(value = "getOrders")
+    public List<OrderDto> getOrders() {
+        return new ArrayList<>();
+    }
+
+    @GetMapping(value = "getOrder")
+    public OrderDto getOrder(@RequestParam Long orderId) {
+        return new OrderDto(1L, "orderName");
+    }
+
+    public void deleteOrder(@RequestParam Long orderId) {
+
+    }
+
+    @PutMapping(value = "updateOrder")
+    public OrderDto updateOrder(@RequestParam Long orderId) {
+        return new OrderDto(1L, "orderName");
+    }
+
+    @PostMapping(value = "createOrder")
+    public void createOrder(@RequestParam OrderDto orderDto) {
+
+    }
+
 }
