@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.OrderDto;
+import com.kodilla.ecommercee.domain.OrderNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/v1/orders")
+@RequestMapping("/v1/order")
 public class OrderController {
 
     @GetMapping(value = "getOrders")
@@ -17,7 +18,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "getOrder")
-    public OrderDto getOrder(@RequestParam Long orderId) {
+    public OrderDto getOrder(@RequestParam Long orderId) throws OrderNotFoundException {
         return new OrderDto(1L, "orderName");
     }
 
@@ -27,12 +28,12 @@ public class OrderController {
     }
 
     @PutMapping(value = "updateOrder")
-    public OrderDto updateOrder(@RequestParam Long orderId) {
+    public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
         return new OrderDto(1L, "orderName");
     }
 
     @PostMapping(value = "createOrder")
-    public void createOrder(@RequestParam OrderDto orderDto) {
+    public void createOrder(@RequestBody OrderDto orderDto) {
 
     }
 
