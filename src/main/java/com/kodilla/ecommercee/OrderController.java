@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.OrderDto;
-import com.kodilla.ecommercee.domain.OrderNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
