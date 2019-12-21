@@ -15,7 +15,7 @@ public class CartController {
     public void createCart(@RequestParam CartDto cartDto) {
     }
 
-    @GetMapping(value = "getCart")
+    @GetMapping(value = "getCartProducts")
     public List<Product> getCartProducts(@RequestParam Long cartId) {
         return new ArrayList<>();
     }
