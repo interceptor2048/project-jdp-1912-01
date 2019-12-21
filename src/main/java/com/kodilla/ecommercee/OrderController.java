@@ -18,7 +18,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "getOrder")
-    public OrderDto getOrder(@RequestParam Long orderId) throws OrderNotFoundException {
+    public OrderDto getOrder(@RequestParam Long orderId) {
         return new OrderDto(1L, "orderName");
     }
 
