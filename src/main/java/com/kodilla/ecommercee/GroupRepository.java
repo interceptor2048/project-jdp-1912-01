@@ -6,17 +6,19 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Repository
-public interface GroupRepository extends JpaRepository<Group, Integer> {
+public interface GroupRepository extends JpaRepository<Group, Long> {
     @Override
     Group save(Group group);
 
     @Override
     List<Group> findAll();
 
-    Group findById(Long id);
+    @Override
+    Optional<Group> findById(Long id);
 
     void deleteById(Long id);
 }
