@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/product")
+@RequestMapping("/v1/product")
 public class ProductController {
     @GetMapping(value = "getProducts")
     public List<ProductDto> getProducts() {
