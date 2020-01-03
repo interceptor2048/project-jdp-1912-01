@@ -10,26 +10,36 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/user")
 public class UserController {
-    @RequestMapping(method = RequestMethod.GET, value = "getUsers")
+    @GetMapping(value = "getUsers")
     public List<UserDto> getUsers() {
         return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getUser")
+    @GetMapping(value = "getUser")
     public UserDto getUser(@RequestParam("userId") Long userId) {
         return new UserDto(1L, "user1", false, "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee");
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteUser")
+    @DeleteMapping(value = "deleteUser")
     public void deleteUser(@RequestParam Long userId) {
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateUser")
+    @PutMapping(value = "updateUser")
     public UserDto updateUser(@RequestBody UserDto userDto) {
         return new UserDto(1L, "user1a", false, "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee");
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createUser")
+    @PostMapping(value = "createUser")
     public void createUse(UserDto userDto) {
+    }
+
+    @PutMapping(value = "blockUser")
+    private UserDto blockUser(@RequestParam Long userId) {
+        return new UserDto(1L, "user1", true, "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee");
+    }
+
+    @GetMapping(value = "getToken")
+    private String getToken(@RequestParam Long userId) {
+        return "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee";
     }
 }
