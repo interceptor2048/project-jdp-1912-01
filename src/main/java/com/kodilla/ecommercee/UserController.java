@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping(value = "createUser")
-    public void createUse(UserDto userDto) {
+    public void createUser(@RequestBody UserDto userDto) {
     }
 
     @PutMapping(value = "blockUser")
