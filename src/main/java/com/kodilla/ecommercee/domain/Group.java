@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,4 +29,8 @@ public class Group {
             fetch = FetchType.LAZY
     )
     private List<Product> products;
+
+    public Group(String groupName) {
+        this.groupName = groupName;
+    }
 }
