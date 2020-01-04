@@ -5,10 +5,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class User {
+public class UserDto {
     private Long id;
     private String username;
     private boolean isBlocked;
     private String token;
-
 }
