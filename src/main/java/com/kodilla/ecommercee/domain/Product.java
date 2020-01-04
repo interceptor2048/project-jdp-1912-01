@@ -3,10 +3,9 @@ package com.kodilla.ecommercee.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,7 +18,11 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "group_id")
     public Group group;
-    @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
-    private Order order;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "join_orders_product",
+            joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")}
+    )
+    private List<Order> orders = new ArrayList<>();
 }

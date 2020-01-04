@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,14 +20,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name = "USER_ID")
+    @Column(name = "user_id")
     private Long id;
     @NotNull
-    @Column(name = "USER_USERNAME")
+    @Column(name = "user_username")
     private String username;
+    @NotNull
+    @Column(name = "user_isBlocked")
     private boolean isBlocked;
     @NotNull
-    @Column(name = "USER_TOKEN")
+    @Column(name = "user_token")
     private String token;
     @OneToMany(
             targetEntity = Order.class,

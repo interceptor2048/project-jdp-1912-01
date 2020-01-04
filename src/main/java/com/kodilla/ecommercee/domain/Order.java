@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ORDERS")
+@Table(name = "orders")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,19 +18,13 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name = "ORDER_ID")
+    @Column(name = "order_id")
     private Long id;
-    @Column(name = "ORDER_NAME")
+    @Column(name = "order_name")
     private String orderName;
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "order",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "orders")
     private List<Product> products = new ArrayList<>();
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id")
     private User user;
-    //MANY TO ONE DO USERS
 }
