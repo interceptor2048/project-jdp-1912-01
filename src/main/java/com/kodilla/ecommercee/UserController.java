@@ -16,7 +16,7 @@ public class UserController {
     }
 
     @GetMapping(value = "getUser")
-    public UserDto getUser(@RequestParam("userId") Long userId) {
+    public UserDto getUser(@RequestParam Long userId) {
         return new UserDto(1L, "user1", false, "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee");
     }
 
