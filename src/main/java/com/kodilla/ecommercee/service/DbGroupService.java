@@ -13,8 +13,8 @@ import java.util.Optional;
 public class DbGroupService {
     private final GroupRepository groupRepository;
 
-    public void createGroup(Group group) {
-        groupRepository.save(group);
+    public Group createGroup(Group group) {
+        return groupRepository.save(group);
     }
 
     public List<Group> getAllGroups() {
