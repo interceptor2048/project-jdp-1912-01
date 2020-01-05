@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,22 +11,33 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@Table(name = "products")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
     @Id
-    @Column(name = "product_id")
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @Column(name = "product_id")
     private Long id;
+
+    @Column(name = "product_name")
+    @NotNull
     private String productName;
+
+    @Column(name = "product_type")
     private String productType;
+
     @ManyToOne
     @JoinColumn(name = "group_id")
     public Group group;
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    private List<Cart> carts = new ArrayList<>();
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "join_orders_product",
