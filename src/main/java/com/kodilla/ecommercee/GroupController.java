@@ -31,8 +31,8 @@ public class GroupController {
     }
 
     @PutMapping(value = "updateGroup")
-    public GroupDto updateGroup(@RequestBody GroupDto groupDto) {
-        return groupMapper.mapToGroupDto(dbGroupService.createGroup(groupMapper.mapToGroup(groupDto)));
+    public GroupDto updateGroup(@RequestBody GroupDto groupDto) throws GroupNotFoundException {
+        return groupMapper.mapToGroupDto(dbGroupService.updateGroup(groupDto.getId(), groupDto.getGroupName()));
     }
 
     @PostMapping(value = "createGroup")

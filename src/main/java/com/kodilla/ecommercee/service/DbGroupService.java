@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.service;
 
+import com.kodilla.ecommercee.GroupNotFoundException;
 import com.kodilla.ecommercee.GroupRepository;
 import com.kodilla.ecommercee.domain.Group;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,8 @@ import java.util.Optional;
 public class DbGroupService {
     private final GroupRepository groupRepository;
 
-    public Group createGroup(Group group) {
-        return groupRepository.save(group);
+    public void createGroup(Group group) {
+        groupRepository.save(group);
     }
 
     public List<Group> getAllGroups() {
@@ -29,5 +30,11 @@ public class DbGroupService {
         if (groupRepository.existsById(id)) {
             groupRepository.deleteById(id);
         }
+    }
+
+    public Group updateGroup(final Long id, String groupName) throws GroupNotFoundException {
+        Group toUpdate = groupRepository.findById(id).orElseThrow(GroupNotFoundException::new);
+        toUpdate.setGroupName(groupName);
+        return groupRepository.save(toUpdate);
     }
 }
