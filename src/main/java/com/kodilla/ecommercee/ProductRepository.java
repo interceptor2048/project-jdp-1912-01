@@ -24,5 +24,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Override
     void deleteById(Long id);
 
-    //
 }
