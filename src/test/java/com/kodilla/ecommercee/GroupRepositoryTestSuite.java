@@ -2,6 +2,7 @@ package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -92,5 +93,10 @@ public class GroupRepositoryTestSuite {
         Optional<Group> groupFound = groupRepository.findById(groupOneId);
         //Then
         Assert.assertFalse(groupFound.isPresent());
+    }
+
+    @After
+    public void cleanUp() {
+        groupRepository.deleteAll();
     }
 }
