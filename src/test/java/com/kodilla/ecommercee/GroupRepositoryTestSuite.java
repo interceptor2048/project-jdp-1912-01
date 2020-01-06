@@ -2,7 +2,7 @@ package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
-import org.junit.After;
+import org.springframework.test.annotation.DirtiesContext;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +18,7 @@ import java.util.Optional;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class GroupRepositoryTestSuite {
     @Autowired
     private GroupRepository groupRepository;
@@ -95,8 +96,4 @@ public class GroupRepositoryTestSuite {
         Assert.assertFalse(groupFound.isPresent());
     }
 
-    @After
-    public void cleanUp() {
-        groupRepository.deleteAll();
-    }
 }
