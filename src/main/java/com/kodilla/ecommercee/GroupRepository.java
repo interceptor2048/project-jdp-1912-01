@@ -18,7 +18,7 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
     List<Group> findAll();
 
     @Override
-    Optional<Group> findById(Long id);
+    Optional<Group> findById(final Long id);
 
     void deleteById(Long id);
 }

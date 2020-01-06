@@ -10,18 +10,17 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@Table(name = "products")
 @Getter
 @Setter
-@Table(name = "products")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
     @Id
-    @Column(name = "product_id")
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
+    @Column(name = "product_id")
     private Long id;
 
     @Column(name = "product_name")
@@ -35,6 +34,9 @@ public class Product {
     @JoinColumn(name = "group_id")
     public Group group;
 
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    private List<Cart> carts = new ArrayList<>();
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "join_orders_product",
@@ -42,8 +44,4 @@ public class Product {
             inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")}
     )
     private List<Order> orders = new ArrayList<>();
-
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
-    private List<Cart> carts = new ArrayList<>();
-
 }

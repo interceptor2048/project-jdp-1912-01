@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/v1/cart")
 public class CartController {
     @PostMapping(value = "createCart")
-    public void createCart(@RequestParam CartDto cartDto) {
+    public void createCart(@RequestBody CartDto cartDto) {
     }
 
     @GetMapping(value = "getCartProducts")

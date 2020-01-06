@@ -24,6 +24,8 @@ public class Cart {
     private Long id;
     //private User user;
 
+
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "join_products_cart",
@@ -31,5 +33,6 @@ public class Cart {
             inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")}
     )
     private List<Product> products = new ArrayList<>();
+
 
 }
