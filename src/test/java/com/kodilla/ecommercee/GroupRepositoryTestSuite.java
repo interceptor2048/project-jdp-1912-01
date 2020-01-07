@@ -40,10 +40,11 @@ public class GroupRepositoryTestSuite {
         List<Product> products = new ArrayList<>();
         products.add(productOne);
         products.add(productTwo);
-        Group groupOne = new Group(1L, "groupOne", products);
+        Group groupOne = new Group("groupOne", products);
         //When
         groupRepository.save(groupOne);
-        Optional<Group> groupOptional = groupRepository.findById(1L);
+        Long testGroupId = groupOne.getId();
+        Optional<Group> groupOptional = groupRepository.findById(testGroupId);
         int productsSize = 0;
         if (groupOptional.isPresent()) {
             productsSize = groupOptional.get().getProducts().size();
