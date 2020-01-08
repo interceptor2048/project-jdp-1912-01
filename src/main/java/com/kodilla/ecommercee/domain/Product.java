@@ -44,4 +44,8 @@ public class Product {
             inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")}
     )
     private List<Order> orders = new ArrayList<>();
+
+    public Product (String productName){
+        this.productName = productName;
+    }
 }
