@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.GroupNotFoundException;
+import com.kodilla.ecommercee.domain.GroupNotFoundException;
 import com.kodilla.ecommercee.domain.dto.GroupDto;
 import com.kodilla.ecommercee.mapper.GroupMapper;
 import com.kodilla.ecommercee.service.DbGroupService;
