@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
@@ -37,5 +38,11 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Product> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
+
+    public User(String username, boolean isBlocked, String token) {
+        this.username = username;
+        this.isBlocked = isBlocked;
+        this.token = token;
+    }
 }
