@@ -11,20 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "carts")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "carts")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cart_id")
     @NotNull
     private Long id;
-    //private User user;
-
-
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -33,6 +30,9 @@ public class Cart {
             inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "product_id")}
     )
     private List<Product> products = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private User user;
 
 
 }
