@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class ProdutRepositoryTestSuite {
+public class ProductRepositoryTestSuite {
     @Autowired
     private ProductRepository productRepository;
 
