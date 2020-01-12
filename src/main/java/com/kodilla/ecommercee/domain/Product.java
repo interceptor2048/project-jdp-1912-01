@@ -48,4 +48,10 @@ public class Product {
     public Product (String productName){
         this.productName = productName;
     }
+
+    public Product(@NotNull String productName, String productType, Group group) {
+        this.productName = productName;
+        this.productType = productType;
+        this.group = group;
+    }
 }
