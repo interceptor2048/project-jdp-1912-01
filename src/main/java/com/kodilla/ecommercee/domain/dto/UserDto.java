@@ -8,6 +8,6 @@ import lombok.Getter;
 public class UserDto {
     private Long id;
     private String username;
-    private boolean isBlocked;
+    private Boolean isBlocked;
     private String token;
 }

@@ -1,45 +1,61 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.TokenNotFoundException;
+import com.kodilla.ecommercee.domain.UserNotFoundException;
 import com.kodilla.ecommercee.domain.dto.UserDto;
+import com.kodilla.ecommercee.mapper.UserMapper;
+import com.kodilla.ecommercee.service.DbUserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/user")
+@RequiredArgsConstructor
 public class UserController {
+    @Autowired
+    private DbUserService service;
+    @Autowired
+    private UserMapper userMapper;
+
     @GetMapping(value = "getUsers")
     public List<UserDto> getUsers() {
-        return new ArrayList<>();
+        return userMapper.mapToUserDtoList(service.getAllUsers());
     }
 
     @GetMapping(value = "getUser")
-    public UserDto getUser(@RequestParam Long userId) {
-        return new UserDto(1L, "user1", false, "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee");
+    public UserDto getUser(@RequestParam Long userId) throws UserNotFoundException {
+        return userMapper.mapToUserDto(service.getUser(userId).orElseThrow(UserNotFoundException::new));
     }
 
     @DeleteMapping(value = "deleteUser")
     public void deleteUser(@RequestParam Long userId) {
+        service.deleteUser(userId);
     }
 
     @PutMapping(value = "updateUser")
-    public UserDto updateUser(@RequestBody UserDto userDto) {
-        return new UserDto(1L, "user1a", false, "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee");
+    public UserDto updateUser(@RequestBody UserDto userDto) throws UserNotFoundException {
+        return userMapper.mapToUserDto(service.updateUser(userDto.getId(), userMapper.mapToUser(userDto)));
     }
 
-    @PostMapping(value = "createUser")
+    @PostMapping(value = "createUser", consumes = APPLICATION_JSON_VALUE)
     public void createUser(@RequestBody UserDto userDto) {
+        service.saveUser(userMapper.mapToUser(userDto));
     }
 
     @PutMapping(value = "blockUser")
-    private UserDto blockUser(@RequestParam Long userId) {
-        return new UserDto(1L, "user1", true, "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee");
+    private void blockUser(@RequestParam Long userId) {
+        service.blockUser(userId);
     }
 
     @GetMapping(value = "getToken")
-    private String getToken(@RequestParam Long userId) {
-        return "58ef4c1bf245ac008e24127318386d1a6039787c31977b8ab1b2d7fe83c4c9ee";
+    private void getToken(@RequestParam Long userId) throws TokenNotFoundException {
+        service.generateToken(userId);
     }
 }

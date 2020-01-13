@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +24,10 @@ public class User {
     @NotNull
     @Column(name = "user_id")
     private Long id;
-    @NotNull
     @Column(name = "user_username")
     private String username;
-    @NotNull
     @Column(name = "user_isBlocked")
-    private boolean isBlocked;
-    @NotNull
+    private Boolean isBlocked;
     @Column(name = "user_token")
     private String token;
     @OneToMany(
@@ -40,9 +38,27 @@ public class User {
     )
     private List<Order> orders = new ArrayList<>();
 
-    public User(String username, boolean isBlocked, String token) {
+    public User(Long id, String username, Boolean isBlocked, String token) {
         this.username = username;
         this.isBlocked = isBlocked;
         this.token = token;
+    }
+
+    private String tokenGeneration() {
+        SecureRandom random = new SecureRandom();
+        byte bytes[] = new byte[20];
+        random.nextBytes(bytes);
+        String token = bytes.toString();
+        return token.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", isBlocked=" + isBlocked +
+                ", token='" + token + '\'' +
+                '}';
     }
 }
