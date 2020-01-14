@@ -42,14 +42,15 @@ public class DbUserService {
         return userRepository.save(user);
     }
 
-    public void blockUser(final Long id) {
-        if (userRepository.existsById(id)) {
-            User userToBlock = userRepository.getOne(id);
+    public void blockUser(final User user) {
+        if (userRepository.existsById(user.getId())) {
+            User userToBlock = userRepository.getOne(user.getId());
             if (userToBlock.getIsBlocked().equals(false)) {
                 userToBlock.setIsBlocked(true);
             } else {
                 userToBlock.setIsBlocked(false);
             }
+            userRepository.save(userToBlock);
         }
     }
 

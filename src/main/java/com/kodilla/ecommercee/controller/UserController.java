@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -44,14 +42,14 @@ public class UserController {
         return userMapper.mapToUserDto(service.updateUser(userDto.getId(), userMapper.mapToUser(userDto)));
     }
 
-    @PostMapping(value = "createUser", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "createUser")
     public void createUser(@RequestBody UserDto userDto) {
         service.saveUser(userMapper.mapToUser(userDto));
     }
 
     @PutMapping(value = "blockUser")
-    private void blockUser(@RequestParam Long userId) {
-        service.blockUser(userId);
+    private void blockUser(@RequestBody UserDto userDto) {
+        service.blockUser(userMapper.mapToUser(userDto));
     }
 
     @GetMapping(value = "getToken")

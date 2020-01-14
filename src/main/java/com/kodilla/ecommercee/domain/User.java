@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,23 +41,5 @@ public class User {
         this.username = username;
         this.isBlocked = isBlocked;
         this.token = token;
-    }
-
-    private String tokenGeneration() {
-        SecureRandom random = new SecureRandom();
-        byte bytes[] = new byte[20];
-        random.nextBytes(bytes);
-        String token = bytes.toString();
-        return token.toString();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", isBlocked=" + isBlocked +
-                ", token='" + token + '\'' +
-                '}';
     }
 }
