@@ -57,8 +57,10 @@ public class DbUserService {
     public void generateToken(final Long id) throws TokenNotFoundException {
         String userTokenGeneration = "";
         if (userRepository.existsById(id)) {
+            User userById = userRepository.getOne(id);
             userTokenGeneration = tokenGeneration();
-            userRepository.getOne(id).setToken(userTokenGeneration);
+            userById.setToken(userTokenGeneration);
+            userRepository.save(userById);
         }
     }
 
