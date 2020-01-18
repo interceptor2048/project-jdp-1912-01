@@ -23,13 +23,10 @@ public class User {
     @NotNull
     @Column(name = "user_id")
     private Long id;
-    @NotNull
     @Column(name = "user_username")
     private String username;
-    @NotNull
     @Column(name = "user_isBlocked")
-    private boolean isBlocked;
-    @NotNull
+    private Boolean isBlocked;
     @Column(name = "user_token")
     private String token;
     @OneToMany(
@@ -40,7 +37,7 @@ public class User {
     )
     private List<Order> orders = new ArrayList<>();
 
-    public User(String username, boolean isBlocked, String token) {
+    public User(Long id, String username, Boolean isBlocked, String token) {
         this.username = username;
         this.isBlocked = isBlocked;
         this.token = token;
