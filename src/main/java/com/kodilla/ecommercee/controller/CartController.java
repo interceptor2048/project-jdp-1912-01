@@ -29,9 +29,11 @@ public class CartController {
     public void removeProductFromCart(@RequestParam Long cartId, @RequestParam Long productId) {
 
     }
-
+/*
     @PostMapping(value = "createOrderBasedOnCart")
     public OrderDto createOrderBasedOnCart(CartDto cartDto) {
         return new OrderDto(1L, "TestOrder");
     }
+
+ */
 }

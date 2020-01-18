@@ -27,4 +27,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Order(String orderName, User user) {
+        this.orderName = orderName;
+        this.user = user;
+    }
 }
