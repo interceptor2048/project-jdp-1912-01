@@ -34,5 +34,8 @@ public class Cart {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
 
-
+    public Cart(List<Product> products, User user) {
+        this.products = products;
+        this.user = user;
+    }
 }
