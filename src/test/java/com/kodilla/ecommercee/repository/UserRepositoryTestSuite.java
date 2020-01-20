@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,8 +25,8 @@ public class UserRepositoryTestSuite {
 
     @Before
     public void createUsers() {
-        user1 = new User("Rob", false, "token");
-        user2 = new User("Bob", true, "token");
+        user1 = new User(1L, "Rob", false, "token");
+        user2 = new User(2L, "Bob", true, "token");
     }
 
     @Test
