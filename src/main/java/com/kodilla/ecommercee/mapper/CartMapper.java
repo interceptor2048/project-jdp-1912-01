@@ -1,25 +1,21 @@
 package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.Cart;
+import com.kodilla.ecommercee.domain.UserNotFoundException;
 import com.kodilla.ecommercee.domain.dto.CartDto;
+import com.kodilla.ecommercee.service.DbUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class CartMapper {
+    @Autowired
+    ProductMapper productMapper;
+    @Autowired
+    DbUserService userService;
     public Cart mapToCart(final CartDto cartDto) {
-        return new Cart(cartDto.getId(), cartDto.getProducts(), cartDto.getUser());
-    }
-
-    public CartDto mapToCartDto(final Cart cart) {
-        return new CartDto(cart.getId(), cart.getProducts(),cart.getUser());
-    }
-
-    public List<CartDto> mapToCartDtoList(final List<Cart> cartList) {
-        return cartList.stream()
-                .map(c -> new CartDto(c.getId(), c.getProducts(), c.getUser()))
-                .collect(Collectors.toList());
+        return new Cart(cartDto.getId(),
+                productMapper.mapToProductList(cartDto.getProducts()),
+                userService.getUser(cartDto.getUserDto().getId()).orElseThrow(UserNotFoundException::new));
     }
 }

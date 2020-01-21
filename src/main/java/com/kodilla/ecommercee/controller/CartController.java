@@ -41,11 +41,11 @@ public class CartController {
 
     @PutMapping(value = "addProductToCart")
     public void addProductToCart(@RequestParam Long cartId, @RequestParam Long productId) {
-        dbCartService.getCart(cartId).getProducts().add(dbProductService.getProduct(productId));
+        dbCartService.addProductToCart(cartId, productId);
     }
 
     @DeleteMapping(value = "removeProductFromCart")
     public void removeProductFromCart(@RequestParam Long cartId, @RequestParam Long productId) {
-        dbCartService.getCart(cartId).getProducts().remove(dbProductService.getProduct(productId));
+        dbCartService.removeProductFromCart(cartId, productId);
     }
 }
