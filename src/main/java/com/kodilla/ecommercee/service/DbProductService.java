@@ -26,8 +26,8 @@ public class DbProductService {
         return productRepository.save(toUpdate);
     }
 
-    public Optional<Product> getProduct(final Long id) {
-        return productRepository.findById(id);
+    public Product getProduct(final Long id){
+        return productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
     }
 
     public List<Product> getAllProducts() {
