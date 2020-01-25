@@ -1,19 +1,13 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.dto.CartDto;
-import com.kodilla.ecommercee.domain.dto.OrderDto;
-import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.CartMapper;
-import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.DbCartService;
-import com.kodilla.ecommercee.service.DbOrderService;
-import com.kodilla.ecommercee.service.DbProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -22,8 +16,6 @@ import java.util.List;
 public class CartController {
     @Autowired
     private DbCartService dbCartService;
-    @Autowired
-    private DbProductService dbProductService;
     @Autowired
     private CartMapper cartMapper;
     @Autowired

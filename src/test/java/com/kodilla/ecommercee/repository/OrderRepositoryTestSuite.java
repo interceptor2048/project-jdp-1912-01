@@ -23,16 +23,13 @@ public class OrderRepositoryTestSuite {
     public void testOrderSave() {
         //Given
         Order order = new Order();
-
         //When
         orderRepository.save(order);
         Long orderId = order.getId();
-
         //Then
         Long id = order.getId();
         Optional<Order> readOrder = orderRepository.findById(id);
         Assert.assertTrue(readOrder.isPresent());
-
         //CleanUp
         try {
             orderRepository.deleteById(id);
@@ -48,18 +45,15 @@ public class OrderRepositoryTestSuite {
         Order order2 = new Order();
         Order order3 = new Order();
         Order order4 = new Order();
-
         //When
         orderRepository.save(order1);
         orderRepository.save(order2);
         orderRepository.save(order3);
         orderRepository.save(order4);
-
         //Then
         Long id = order2.getId();
         Optional<Order> readOrder = orderRepository.findById(id);
         Assert.assertTrue(readOrder.isPresent());
-
         //CleanUp
         try {
             orderRepository.deleteAll();
@@ -74,18 +68,15 @@ public class OrderRepositoryTestSuite {
         Order order2 = new Order();
         Order order3 = new Order();
         Order order4 = new Order();
-
         //When
         orderRepository.save(order1);
         orderRepository.save(order2);
         orderRepository.save(order3);
         orderRepository.save(order4);
-
         //Then
         List<Order> orders = orderRepository.findAll();
         Assert.assertEquals(4, orders.size());
         Assert.assertNotEquals(2, orders.size());
-
         //CleanUp
         try {
             orderRepository.deleteAll();
