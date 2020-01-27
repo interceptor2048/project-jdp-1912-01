@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -24,9 +23,6 @@ public class DbCartService {
         cartRepository.save(cart);
     }
 
-    public List<Cart> getAllCarts() {
-        return cartRepository.findAll();
-    }
 
     public Cart getCart(final Long cartId) {
         return cartRepository.findById(cartId).orElseThrow(CartNotFoundException::new);

@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.repository;
 import com.kodilla.ecommercee.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
 import java.util.List;
 import java.util.Optional;
 

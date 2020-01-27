@@ -72,5 +72,4 @@ public class CartRepositoryTestSuite {
         //Then
         assertFalse(cartOptional.isPresent());
     }
-
 }
