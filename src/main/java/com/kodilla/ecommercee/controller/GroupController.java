@@ -5,16 +5,20 @@ import com.kodilla.ecommercee.domain.dto.GroupDto;
 import com.kodilla.ecommercee.mapper.GroupMapper;
 import com.kodilla.ecommercee.service.DbGroupService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/group")
 @RequiredArgsConstructor
 public class GroupController {
-    private final DbGroupService dbGroupService;
-    private final GroupMapper groupMapper;
+    @Autowired
+    private DbGroupService dbGroupService;
+    @Autowired
+    private GroupMapper groupMapper;
 
     @GetMapping(value = "getGroups")
     public List<GroupDto> getGroups() {
