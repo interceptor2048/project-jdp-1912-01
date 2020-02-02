@@ -15,7 +15,6 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/user")
-@RequiredArgsConstructor
 public class UserController {
     @Autowired
     private DbUserService service;

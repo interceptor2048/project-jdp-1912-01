@@ -13,7 +13,6 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/group")
-@RequiredArgsConstructor
 public class GroupController {
     @Autowired
     private DbGroupService dbGroupService;

@@ -13,7 +13,6 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/v1/order")
 public class OrderController {
     @Autowired
