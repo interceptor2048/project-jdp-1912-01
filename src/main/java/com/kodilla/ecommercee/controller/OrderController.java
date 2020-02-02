@@ -6,17 +6,19 @@ import com.kodilla.ecommercee.domain.dto.OrderDto;
 import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.service.DbOrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/v1/order")
 public class OrderController {
-    private final DbOrderService dbOrderService;
-    private final OrderMapper orderMapper;
+    @Autowired
+    private DbOrderService dbOrderService;
+    @Autowired
+    private OrderMapper orderMapper;
 
     @GetMapping(value = "getOrders")
     public List<OrderDto> getOrders() {

@@ -6,16 +6,18 @@ import com.kodilla.ecommercee.domain.dto.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.DbProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/product")
-@RequiredArgsConstructor
 public class ProductController {
-    private final DbProductService dbProductService;
-    private final ProductMapper productMapper;
+    @Autowired
+    private DbProductService dbProductService;
+    @Autowired
+    private ProductMapper productMapper;
 
     @GetMapping(value = "getProducts")
     public List<ProductDto> getProducts() {
